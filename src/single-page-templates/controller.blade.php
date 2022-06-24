@@ -5,7 +5,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{{$gen->modelClassName()}};
+use App\Models\{{$gen->modelClassName()}};
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
