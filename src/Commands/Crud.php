@@ -4,7 +4,7 @@ namespace Nvd\Crud\Commands;
 
 use Illuminate\Console\Command;
 use Nvd\Crud\Db;
-
+use Illuminate\Support\Str;
 class Crud extends Command
 {
     public $tableName;
@@ -80,7 +80,7 @@ class Crud extends Command
     public function generateRoute()
     {
         $route = "Route::resource('{$this->route()}','{$this->controllerClassName()}');";
-        $routesFile = app_path('Http/routes.php');
+        $routesFile = app_path('../routes/web.php');
         $routesFileContent = file_get_contents($routesFile);
 
         if ( strpos( $routesFileContent, $route ) == false )
@@ -176,12 +176,12 @@ class Crud extends Command
 
     public function route()
     {
-        return str_slug(str_replace("_"," ", str_singular($this->tableName)));
+        return  Str::slug(str_replace("_"," ", Str::singular($this->tableName)));
     }
 
     public function controllerClassName()
     {
-        return studly_case(str_singular($this->tableName))."Controller";
+        return Str::studly(Str::singular($this->tableName))."Controller";
     }
 
     public function viewsDir()
@@ -191,7 +191,7 @@ class Crud extends Command
 
     public function viewsDirName()
     {
-        return str_singular($this->tableName);
+        return Str::singular($this->tableName);
     }
 
     public function controllersDir()
@@ -206,17 +206,17 @@ class Crud extends Command
 
     public function modelClassName()
     {
-        return studly_case(str_singular($this->tableName));
+        return Str::studly(Str::singular($this->tableName));
     }
 
     public function modelVariableName()
     {
-        return camel_case(str_singular($this->tableName));
+        return Str::camel(Str::singular($this->tableName));
     }
 
     public function titleSingular()
     {
-        return ucwords(str_singular(str_replace("_", " ", $this->tableName)));
+        return ucwords(Str::singular(str_replace("_", " ", $this->tableName)));
     }
 
     public function titlePlural()
