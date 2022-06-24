@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class <?=$gen->modelClassName()?> extends Model {
 
     public $guarded = ["id","created_at","updated_at"];
+    protected $table = '<?=$gen->jenengTable()?>';
 
     public static function findRequested()
     {
