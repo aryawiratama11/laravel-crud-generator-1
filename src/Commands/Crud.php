@@ -127,7 +127,7 @@ class Crud extends Command
 
     public function generateModel()
     {
-        $modelFile = $this->modelsDir().'/'.$this->modelClassName().".php";
+        $modelFile = $this->modelsDir().'/Models/'.$this->modelClassName().".php";
 
         if($this->confirmOverwrite($modelFile))
         {
@@ -207,6 +207,10 @@ class Crud extends Command
     public function modelClassName()
     {
         return Str::studly(Str::singular($this->tableName));
+    }
+    public function jenengTable()
+    {
+        return $this->tableName;
     }
 
     public function modelVariableName()
